@@ -6,7 +6,9 @@ class Task
 
     function __construct($description)
     {
+
         $this->description = $description;
+
     }
 
     function setDescription($new_description)
@@ -24,15 +26,21 @@ class Task
     }
 
     function save() {
+
         array_push($_SESSION['list_of_tasks'], $this);
+
     }
 
     static function getAll() {
+
         return $_SESSION['list_of_tasks'];
+
     }
 
     static function deleteAll() {
+
         $_SESSION['list_of_tasks'] = array();
+
     }
 
 }
