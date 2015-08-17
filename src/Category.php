@@ -20,11 +20,6 @@
             return $this->name;
         }
 
-        function setId($new_id)
-        {
-            $this->id = $new_id;
-        }
-
         function getId()
         {
             return $this->id;
@@ -34,7 +29,6 @@
         {
             $GLOBALS['DB']->exec("INSERT INTO categories (name) VALUES ('{$this->getName()}')");
             $result_id = $GLOBALS['DB']->lastInsertId();
-            $this->setId($result_id);
         }
 
         static function getAll()
