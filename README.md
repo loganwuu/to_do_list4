@@ -1,12 +1,12 @@
 # To Do List with MySQL
 
-##### App that allows users to create tasks and categories, mark tasks as done, add due dates to tasks and many-to-many relationships between tasks and categories. (8/24/15)
+##### App that allows users to create tasks and categories, mark tasks as done, add due dates to tasks and create many-to-many relationships between tasks and categories. (8/24/15)
 
 #### Logan Wu & Steve Smietana
 
 ## Description
 
-This application allows users to input tasks and descriptions, edit them, mark them and add due dates. They can also delete their entire list of tasks and categories.
+This application allows users to input tasks and descriptions, edit them, mark them and add due dates. They can also delete individual and/or the entire list of tasks and categories.
 
 ## Setup
 * Clone the project using the link provided on Github.
