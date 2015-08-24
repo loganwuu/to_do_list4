@@ -6,7 +6,7 @@ class Task
     private $id;
     private $complete;
 
-    function __construct($description, $complete=0, $id = null)
+    function __construct($description, $complete = 0, $id = null)
     {
         $this->description = $description;
         $this->id = $id;
@@ -30,11 +30,23 @@ class Task
 
     function getComplete()
     {
-        if ($this->complete == 0) {
-            return false;
-        } else {
-            return true;
+        return $this->complete;
+    }
+
+    function getSomething()
+    {
+        if($this->complete == 0) {
+            return "incomplete";
         }
+        else {
+            return "complete";
+        }
+    }
+
+    static function getAllComplete()
+    {
+        $complete_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks WHERE complete == 1;");
+        return $complete_tasks;
     }
 
     function getId()
@@ -48,10 +60,7 @@ class Task
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
-    function
-
     static function getAll() {
-
         $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks;");
         $tasks = array();
         foreach($returned_tasks as $task) {
@@ -86,6 +95,12 @@ class Task
     {
         $GLOBALS['DB']->exec("UPDATE tasks SET description = '{$new_description}' WHERE id = {$this->getId()};");
         $this->setDescription($new_description);
+    }
+
+    function updateComplete($new_complete)
+    {
+        $GLOBALS['DB']->exec("UPDATE tasks SET complete = {$new_complete} WHERE id = {$this->getId()};");
+        $this->setComplete($new_complete);
     }
 
     function addCategory($category)

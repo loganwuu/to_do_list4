@@ -24,7 +24,9 @@
         {
             //Arrange
             $description = "Do dishes.";
-            $test_task = new Task($description);
+            $id = 1;
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
 
             //Act
             $result = $test_task->getDescription();
@@ -37,7 +39,9 @@
         {
             //Arrange
             $description = "Do dishes.";
-            $test_task = new Task($description);
+            $id = 1;
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
 
             //Act
             $test_task->setDescription("Drink coffee.");
@@ -52,7 +56,8 @@
             //Arrange
             $description = "Wash the dog";
             $id = 1;
-            $test_task = new Task($description, $id);
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
             $test_task->save();
 
             $new_description = "Clean the dog";
@@ -68,7 +73,9 @@
         {
             //Arrange
             $description = "Wash the dog";
-            $test_task = new Task($description, $id=null);
+            $id = 1;
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
 
             //Act
             $test_task->save();
@@ -83,16 +90,20 @@
             //Arrange
             $description = "Wash the dog";
             $description2 = "Water the lawn";
-            $test_Task = new Task($description, $id=null);
-            $test_Task->save();
-            $test_Task2 = new Task($description2, $id=null);
-            $test_Task2->save();
+            $id = 1;
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
+            $test_task->save();
+            $id2 = 2;
+            $complete2 = 0;
+            $test_task2 = new Task($description2, $complete2, $id2);
+            $test_task2->save();
 
             //Act
             $result = Task::getAll();
 
             //Assert
-            $this->assertEquals([$test_Task, $test_Task2], $result);
+            $this->assertEquals([$test_task, $test_task2], $result);
 
         }
 
@@ -101,10 +112,14 @@
             //Arrange
             $description = "Wash the dog";
             $description2 = "Water the lawn";
-            $test_Task = new Task($description, $id=null);
-            $test_Task->save();
-            $test_Task2 = new Task($description2, $id=null);
-            $test_Task2->save();
+            $id = 1;
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
+            $test_task->save();
+            $id2 = 2;
+            $complete2 = 0;
+            $test_task2 = new Task($description2, $complete2, $id2);
+            $test_task2->save();
 
             //Act
             Task::deleteAll();
@@ -119,10 +134,11 @@
             //Arrange
             $description = "Wash the dog";
             $id = 1;
-            $test_Task = new Task($description, $id);
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
 
             //Act
-            $result = $test_Task->getId();
+            $result = $test_task->getId();
 
             //Assert
             $this->assertEquals(1, $result);
@@ -132,15 +148,15 @@
         {
             //Arrange
             $description = "Wash the dog";
-            $id = 1;
-            $test_task = new Task($description, $id);
-            $test_task->save();
-
             $description2 = "Water the lawn";
+            $id = 1;
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
+            $test_task->save();
             $id2 = 2;
-            $test_task2 = new Task($description2, $id2);
+            $complete2 = 0;
+            $test_task2 = new Task($description2, $complete2, $id2);
             $test_task2->save();
-
 
             //Act
             $test_task->delete();
@@ -155,18 +171,20 @@
             $description = "Wash the dog";
             $description2 = "Water the lawn";
             $id = 1;
-            $test_Task = new Task($description, $id);
-            $test_Task->save();
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
+            $test_task->save();
             $id2 = 2;
-            $test_Task2 = new Task($description2, $id2);
-            $test_Task2->save();
+            $complete2 = 0;
+            $test_task2 = new Task($description2, $complete2, $id2);
+            $test_task2->save();
 
             //Act
-            $id = $test_Task->getId();
+            $id = $test_task->getId();
             $result = Task::find($id);
 
             //Assert
-            $this->assertEquals($test_Task, $result);
+            $this->assertEquals($test_task, $result);
         }
 
         function testSaveSetsId()
@@ -174,7 +192,8 @@
             //Arrange
             $description = "Wash the dog";
             $id = 1;
-            $test_task = new Task($description, $id);
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
 
             //Act
             $test_task->save();
@@ -186,15 +205,21 @@
         function testAddCategory()
         {
             //Arrange
+            $description = "Wash the dog";
+            $description2 = "Water the lawn";
+            $id = 1;
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
+            $test_task->save();
+            $id2 = 2;
+            $complete2 = 0;
+            $test_task2 = new Task($description2, $complete2, $id2);
+            $test_task2->save();
+
             $name = "Work stuff";
             $id = 1;
             $test_category = new Category($name, $id);
             $test_category->save();
-
-            $description = "File reports";
-            $id2 = 2;
-            $test_task = new Task($description, $id2);
-            $test_task->save();
 
             //Act
             $test_task->addCategory($test_category);
@@ -218,7 +243,8 @@
 
             $description = "File reports";
             $id3 = 3;
-            $test_task = new Task($description, $id3);
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id3);
             $test_task->save();
 
             //Act
@@ -239,7 +265,8 @@
 
             $description = "File reports";
             $id2 = 2;
-            $test_task = new Task($description, $id2);
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id2);
             $test_task->save();
 
             //Act

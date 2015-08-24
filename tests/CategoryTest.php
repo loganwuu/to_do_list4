@@ -183,9 +183,10 @@
             $test_category = new Category($name, $id);
             $test_category->save();
 
-            $description = "File reports";
-            $id2 = 2;
-            $test_task = new Task($description, $id2);
+            $description = "Wash the dog";
+            $id = 1;
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
             $test_task->save();
 
             //Act
@@ -204,21 +205,28 @@
             $test_category->save();
 
             $description = "Wash the dog";
-            $id2 = 2;
-            $test_task = new Task($description, $id2);
+            $id = 1;
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id);
             $test_task->save();
 
-            $description2 = "Take out the trash";
-            $id3 = 3;
-            $test_task2 = new Task($description2, $id3);
+            $description2 = "Wash the dog";
+            $id2 = 2;
+            $complete2 = 0;
+            $test_task2 = new Task($description2, $complete2, $id2);
             $test_task2->save();
+
+            var_dump($test_task2);
 
             //Act
             $test_category->addTask($test_task);
             $test_category->addTask($test_task2);
 
+            $result = $test_category->getTasks();
+            var_dump($result);
+
             //Assert
-            $this->assertEquals($test_category->getTasks(), [$test_task, $test_task2]);
+            $this->assertEquals([$test_task, $test_task2], $result);
         }
 
         function testDelete()
@@ -231,7 +239,8 @@
 
             $description = "File reports";
             $id2 = 2;
-            $test_task = new Task($description, $id2);
+            $complete = 0;
+            $test_task = new Task($description, $complete, $id2);
             $test_task->save();
 
             //Act
@@ -240,6 +249,22 @@
 
             //Assert
             $this->assertEquals([], $test_task->getCategories());
+        }
+
+        function testGetComplete()
+        {
+            //Arrange
+            $description = "File reports";
+            $complete = 1;
+            $id = 1;
+            $test_task = new Task($description, $complete, $id);
+            $test_task->save();
+
+            //Act
+            $result = $test_task->getComplete();
+
+            //Assert
+            $this->assertEquals(true, $result);
         }
     }
 ?>

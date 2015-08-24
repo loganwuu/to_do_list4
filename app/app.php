@@ -6,6 +6,8 @@
 
     $app = new Silex\Application();
 
+    $app['debug']=true;
+
     $server = 'mysql:host=localhost;dbname=to_do';
     $username = 'root';
     $password = 'root';
@@ -25,7 +27,7 @@
 
     //Tasks
     $app->get("/tasks", function() use ($app) {
-        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
+        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll(), 'complete'=>Task::getAllComplete()));
     });
 
     $app->post("/tasks",function() use ($app) {
@@ -48,7 +50,14 @@
         $description = $_POST['description'];
         $task = Task::find($id);
         $task->update($description);
-        return $app['twig']->render('task.html.twig', array('task' => $task, 'categories' => $task->getCategories()));
+        return $app['twig']->render('task.html.twig', array('task' => $task, 'categories' => $task->getCategories(), 'all_categories'=>Category::getAll()));
+    });
+
+    $app->patch("/task_complete/{id}", function($id) use ($app) {
+        $complete = $_POST['complete'];
+        $task = Task::find($id);
+        $task->updateComplete($complete);
+        return $app['twig']->render('task.html.twig', array('task' => $task, 'categories' => $task->getCategories(), 'all_categories'=>Category::getAll()));
     });
 
     $app->post("/add_tasks", function() use ($app) {

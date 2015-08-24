@@ -29,6 +29,12 @@
 
     <p><a href="/tasks/{{ task.getId }}/edit">Edit this task</a></p>
 
+    <form action="/task_complete/{{ task.getId }}" method="post">
+        <input name="_method" type="hidden" value="patch">
+        <button type='submit' name="complete" value="1">Complete</button>
+        <button type='submit' name="complete" value="0">Incomplete</button>
+    </form>
+
     <p><a href='/'>Home</a></p>
 </body>
 </html>
