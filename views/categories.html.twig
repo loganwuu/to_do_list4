@@ -1,30 +1,37 @@
 <html>
     <head>
         <title>To Do List</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     </head>
     <body>
+        <div class="container">
 
-        <h1>Categories</h1>
+            <h1>Categories</h1>
 
-        {% if categories is not empty %}
-            <p>Here are all your categories:</p>
-            <ul>
-                {% for category in categories %}
-                    <li><a href="/categories/{{ category.getId }}">{{ category.getName }}</a></li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+            {% if categories is not empty %}
+                <p>Here are all your categories:</p>
+                <ul>
+                    {% for category in categories %}
+                        <li><a href="/categories/{{ category.getId }}">{{ category.getName }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 
-        <form action ='/categories' method='post'>
-            <label for 'name'>Category name</label>
-            <input id='name' name='name' type='text'>
+            <form action ='/categories' method='post'>
+                <label for 'name'>Category name</label>
+                <input id='name' name='name' type='text'>
 
-            <button type='submit'>Add category</button>
-        </form>
-        <form action ='/delete_categories' method='post'>
-            <button type='submit'>Clear</button>
-        </form>
+                <button type='submit'>Add category</button>
+            </form>
 
-        <p><a href='/'>Home</a></p>
+
+            <form action ='/delete_categories' method='post'>
+                <button type='submit' class="btn btn-danger">Clear</button>
+            </form>
+
+            <form action="/">
+                <button type="submit" class="btn btn-default">Return Home</button>
+            </form>
+        </div>
     </body>
 </html>

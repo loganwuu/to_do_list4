@@ -1,10 +1,20 @@
-<h1>Update the &#8216;{{ task.getDescription }}&#8217; Task </h1>
+<html>
+    <head>
+        <title>Task Edit</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Update the &#8216;{{ task.getDescription }}&#8217; Task </h1>
 
-<form action="/tasks/{{ task.getId }}" method="post">
-  <input name="_method" type="hidden" value="patch">
+            <form action="/tasks/{{ task.getId }}" method="post">
+              <input name="_method" type="hidden" value="patch">
 
-  <label for="description">Update your task:</label>
-  <input id="description" name="description" type="text">
+              <label for="description">Update your task:</label>
+              <input id="description" name="description" type="text">
 
-  <button type="submit">Update</button>
-</form>
+              <button type="submit">Update</button>
+            </form>
+        </div>
+    </body>
+</html>
