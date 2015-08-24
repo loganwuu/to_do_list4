@@ -4,11 +4,13 @@ class Task
 
     private $description;
     private $id;
+    private $complete;
 
-    function __construct($description, $id = null)
+    function __construct($description, $complete=0, $id = null)
     {
         $this->description = $description;
         $this->id = $id;
+        $this->complete = $complete;
     }
 
     function setDescription($new_description)
@@ -21,6 +23,20 @@ class Task
         return $this->description;
     }
 
+    function setComplete($new_complete)
+    {
+        $this->complete = (boolean) $new_complete;
+    }
+
+    function getComplete()
+    {
+        if ($this->complete == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     function getId()
     {
         return $this->id;
@@ -28,9 +44,11 @@ class Task
 
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO tasks (description) VALUES ('{$this->getDescription()}');");
+        $GLOBALS['DB']->exec("INSERT INTO tasks (description, complete) VALUES ('{$this->getDescription()}', {$this->getComplete()});");
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
+
+    function
 
     static function getAll() {
 
@@ -39,19 +57,17 @@ class Task
         foreach($returned_tasks as $task) {
             $description = $task['description'];
             $id = $task['id'];
-            $new_task = new Task($description, $id);
+            $complete = $task['complete'];
+            $new_task = new Task($description, $complete, $id);
             array_push($tasks, $new_task);
         }
         return $tasks;
-
     }
 
     static function deleteAll()
     {
         $GLOBALS['DB']->exec("DELETE FROM tasks;");
     }
-
-
 
     static function find($search_id)
     {
