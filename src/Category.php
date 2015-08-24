@@ -87,7 +87,8 @@
                 $description = $returned_task[0]['description'];
                 $id = $returned_task[0]['id'];
                 $complete = $returned_task[0]['complete'];
-                $new_task = new Task($description, $complete, $id);
+                $due_date = $returned_task[0]['due_date'];
+                $new_task = new Task($description, $complete, $due_date, $id);
                 array_push($tasks, $new_task);
             }
             return $tasks;

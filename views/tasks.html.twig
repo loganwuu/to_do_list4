@@ -1,29 +1,33 @@
 <html>
 <head>
     <title>To Do List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>To Do List</h1>
-    {% if tasks is not empty %}
-        <p>Here are all your tasks:</p>
-        <ul>
-            {% for task in tasks %}
-                <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }} ({{ task.getSomething }})</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <div class="container">
+        <h1>To Do List</h1>
+        {% if tasks is not empty %}
+            <p>Here are all your tasks:</p>
+            <ul>
+                {% for task in tasks %}
+                    <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }}</a> Due: {{ task.getDueDate }} ({{ task.getSomething }})
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
-    <form action='/tasks' method='post'>
-        <label for='description'>Task Description</label>
-        <input id='description' name='description' type='text'>
+        <form action='/tasks' method='post'>
+            <label for='description'>Task Description</label>
+            <input id='description' name='description' type='text'>
+            <label for="due_date">Due Date:</label>
+            <input id="due_date" type="date" name="due_date">
+            <button type='submit'>Add task</button>
+        </form>
 
-        <button type='submit'>Add task</button>
-    </form>
-
-    <form action='/delete_tasks' method='post'>
-        <button type='submit'>Clear</button>
-    </form>
-    <p><a href='/'>Home</a></p>
+        <form action='/delete_tasks' method='post'>
+            <button type='submit'>Clear</button>
+        </form>
+        <p><a href='/'>Home</a></p>
+    </div>
 </body>
 </html>

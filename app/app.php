@@ -27,11 +27,11 @@
 
     //Tasks
     $app->get("/tasks", function() use ($app) {
-        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll(), 'complete'=>Task::getAllComplete()));
+        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
     });
 
     $app->post("/tasks",function() use ($app) {
-        $task = new Task($_POST['description']);
+        $task = new Task($_POST['description'], 0, $_POST['due_date']);
         $task->save();
         return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
     });
