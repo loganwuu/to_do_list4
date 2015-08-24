@@ -17,9 +17,8 @@
 
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
-    
-    $app->get("/", function() use ($app) {
 
+    $app->get("/", function() use ($app) {
         return $app['twig']->render('index.html.twig');
     });
 
@@ -31,11 +30,20 @@
         return $app['twig']->render('categories.html.twig', array('categories' => Category::getAll()));
     });
 
+    $app->get("/categories/{id}", function($id) use ($app) {
+    $category = Category::find($id);
+    return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks(), 'all_tasks' => Task::getAll()));
+    });
+
     $app->post("/tasks", function() use ($app) {
         $task = new Task($_POST['description']);
         $task->save();
         return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
+    });
 
+    $app->get("/tasks/{id}", function($id) use ($app) {
+        $task = Task::find($id);
+        return $app['twig']->render('tasks.html.twig', array('task' => $task, 'categories' => $task->getCategories(), 'all-categories' => Category::getAll()));
     });
 
     $app->post("/delete_tasks", function() use ($app) {
