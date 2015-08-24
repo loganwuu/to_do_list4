@@ -30,11 +30,6 @@
         return $app['twig']->render('categories.html.twig', array('categories' => Category::getAll()));
     });
 
-    $app->get("/categories/{id}", function($id) use ($app) {
-    $category = Category::find($id);
-    return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks(), 'all_tasks' => Task::getAll()));
-    });
-
     $app->post("/tasks", function() use ($app) {
         $task = new Task($_POST['description']);
         $task->save();
@@ -56,6 +51,11 @@
         $category = new Category($_POST['name']);
         $category->save();
         return $app['twig']->render('categories.html.twig', array('categories' => Category::getAll()));
+    });
+
+    $app->get("/categories/{id}", function($id) use ($app) {
+    $category = Category::find($id);
+    return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks(), 'all_tasks' => Task::getAll()));
     });
 
     $app->post("/delete_categories", function() use ($app) {
