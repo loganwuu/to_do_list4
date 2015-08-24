@@ -1,22 +1,44 @@
-# _A To Do_
+# To Do List with MySQL
 
-#### _A To Do app built with Silex, 8/5/2015_
+##### App that allows users to create tasks and categories, mark tasks as done, add due dates to tasks and many-to-many relationships between tasks and categories. (8/24/15)
 
-#### By _**Steve Smietana & Charles Moss**_
+#### Logan Wu & Steve Smietana
 
 ## Description
-An input field accepts a "task" and adds it to a list after confirming it's addition. A "clear" button remove all of the tasks.
+
+This application allows users to input tasks and descriptions, edit them, mark them and add due dates. They can also delete their entire list of tasks and categories.
 
 ## Setup
-You will need [Composer](https://github.com/composer/composer) installed, so once you have cloned the repo you can run:
+* Clone the project using the link provided on Github.
+* Run composer install in Terminal from the project root folder.
+* Start the PHP server from Terminal in the /web folder.
+* Open a web browser and navigate to ```localhost:8000```.
 
-```
-$ composer install
-```
-
-this will pull in what ever packages are used
-
-The start your php server in the todo/web/ dir. 
 
 ## Technologies Used
-Makes use of [Silex](http://silex.sensiolabs.org/) with a focus on Twig templetes.
+
+PHP, PHPUnit, Silex, Twig, and MySQL
+
+### Legal
+
+Copyright (c) 2015 Logan Wu $  Steve Smietana
+
+This software is licensed under the MIT license.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
